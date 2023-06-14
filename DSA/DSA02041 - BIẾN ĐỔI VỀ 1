@@ -1,0 +1,33 @@
+#include<stdio.h>
+#define N 100001
+#define scan(n) scanf("%d",&n);
+#define prin(n) printf("%d\n",n);
+int bdv1[N];
+int min(int a,int b)
+{
+return a<b?a:b;
+}
+void init()
+{
+bdv1[1]=0;
+bdv1[2]=bdv1[3]=1;
+int i;
+for(i=4;i<N;i++)
+{
+bdv1[i]=bdv1[i-1];
+if(i%2==0) bdv1[i]=min(bdv1[i],bdv1[i/2]);
+if(i%3==0) bdv1[i]=min(bdv1[i],bdv1[i/3]);
+bdv1[i]++;
+}
+}
+int main()
+{
+int t,n;
+init();
+scan(t)
+while(t--)
+{
+scan(n)
+prin(bdv1[n])
+}
+}
